@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generated data files - not committed to repo
+data/sample/compliance_data.csv

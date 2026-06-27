@@ -1,5 +1,7 @@
 # Intune Compliance Risk Predictor
 
+![CI](https://github.com/richmayur/intune-compliance-risk-predictor/actions/workflows/ci.yml/badge.svg)
+
 A machine learning classifier that predicts which managed devices are at risk 
 of becoming non-compliant, built on synthetic Intune-style telemetry using 
 logistic regression and scikit-learn.

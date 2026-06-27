@@ -114,3 +114,24 @@ intune-compliance-risk-predictor/
 ├── LICENSE
 └── README.md
 ```
+
+## Setup
+
+**Requirements:** Python 3.9+
+
+```bash
+# Clone the repository
+git clone https://github.com/richmayur/intune-compliance-risk-predictor.git
+cd intune-compliance-risk-predictor
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+**Run the notebooks in order:**
+
+1. `notebooks/06-12_compliance_eda.ipynb` — exploratory data analysis
+2. `notebooks/06-13 - Logistic Regression Model.ipynb` — model training and evaluation
+
+The synthetic dataset is already included at `data/sample/compliance_data.csv` — 
+no data generation step is required to run the notebooks.

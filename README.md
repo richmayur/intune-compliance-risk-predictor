@@ -135,3 +135,30 @@ pip install -r requirements.txt
 
 The synthetic dataset is already included at `data/sample/compliance_data.csv` — 
 no data generation step is required to run the notebooks.
+
+## Roadmap
+
+This project is the first in a series of endpoint intelligence tools:
+
+- [ ] Add Random Forest model and compare against logistic regression
+- [ ] Add SHAP values for per-device explainability
+- [ ] Expose model as a REST API endpoint
+- [ ] **Next project:** Device Behaviour Clustering — grouping devices into 
+      behavioural segments using K-Means and PCA
+
+## Certification Mapping
+
+This project demonstrates practical skills aligned to the **Microsoft AI-300** 
+(Machine Learning Operations Engineer Associate) certification:
+
+| AI-300 Skill Area | Demonstrated Here |
+|---|---|
+| Data asset design | Synthetic dataset with realistic Intune schema |
+| Model training and evaluation | Logistic regression with stratified split |
+| Experiment discipline | Threshold tuning with documented trade-off reasoning |
+| Feature engineering | Domain-informed feature selection from Intune telemetry |
+| Model interpretability | Coefficient inspection and directional validation |
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.

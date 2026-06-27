@@ -94,3 +94,23 @@ when it rises.
 | `days_since_sync` | Positive | Devices not checking in are outside management reach |
 | `os_version_risk` | Positive | Outdated OS versions trigger compliance policy failures |
 | `assigned_policy_count` | Positive | More policies means more surface area for failure |
+
+## Project Structure
+
+```
+intune-compliance-risk-predictor/
+├── data/
+│   ├── sample/          # Synthetic device dataset (safe for public use)
+│   └── processed/       # Outputs from data preparation steps
+├── notebooks/
+│   ├── 06-12_compliance_eda.ipynb          # Exploratory data analysis
+│   └── 06-13 - Logistic Regression Model.ipynb  # Model training and evaluation
+├── src/
+│   └── compliance_risk/
+│       └── generate_data.py     # Synthetic dataset generator
+├── docs/                # Model findings and project notes
+├── tests/               # Test placeholder for future CI coverage
+├── .gitignore
+├── LICENSE
+└── README.md
+```

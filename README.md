@@ -32,3 +32,27 @@ device telemetry patterns without using any real client data.
 Synthetic data was chosen deliberately so this project can remain fully public 
 on GitHub. Real environment data informs the feature design; no client data 
 is present in this repository.
+
+## Approach
+
+**Model:** Logistic Regression via scikit-learn
+
+Logistic regression was chosen as the first model for this problem deliberately. 
+It is interpretable — coefficients can be inspected to confirm that each feature 
+is pushing predictions in the direction domain knowledge would expect. For a 
+compliance risk tool, being able to explain *why* a device is flagged matters 
+as much as whether it is flagged correctly.
+
+**Pipeline:**
+- Stratified train/test split to preserve class balance across both sets
+- `StandardScaler` fitted on training data only, applied to test data
+- Model trained on 800 devices, evaluated on 200
+
+**Why stratified split?** With a 30% non-compliant class, a random split risks 
+putting too few positive cases in the test set. Stratification guarantees the 
+same class ratio in both halves.
+
+**Why fit scaler on train only?** Fitting on the full dataset would leak 
+information about the test set into the scaling step — the model would 
+effectively have seen test data before evaluation. This discipline is applied 
+consistently throughout.

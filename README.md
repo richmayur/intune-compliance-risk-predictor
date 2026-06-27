@@ -56,3 +56,41 @@ same class ratio in both halves.
 information about the test set into the scaling step — the model would 
 effectively have seen test data before evaluation. This discipline is applied 
 consistently throughout.
+
+## Key Findings
+
+**ROC-AUC: 0.69** — the model has meaningful discriminative ability above 
+random chance for a first-pass logistic regression on synthetic data.
+
+### Threshold Analysis
+
+| Threshold | Non-Compliant Recall | False Negatives |
+|---|---|---|
+| 0.5 (default) | 0.26 | 49 |
+| 0.3 (chosen) | 0.71 | 19 |
+
+**Why 0.3 was chosen over the default 0.5:**
+
+In a compliance monitoring context, false negatives carry asymmetric cost. 
+A false positive means a device is investigated unnecessarily — wasted effort, 
+but recoverable. A false negative means a non-compliant device goes undetected 
+until a user raises a ticket or Conditional Access blocks them from corporate 
+resources.
+
+Moving the threshold from 0.5 to 0.3 reduced missed non-compliant devices 
+from 49 to 19 — a 61% reduction in false negatives. The trade-off is more 
+false positives, but in an operational Intune context that cost is acceptable.
+
+### Feature Coefficients
+
+All five features returned positive coefficients, consistent with Intune 
+domain knowledge — each feature genuinely increases non-compliance risk 
+when it rises.
+
+| Feature | Direction | Domain Interpretation |
+|---|---|---|
+| `app_install_failures` | Strongest positive | Failed installs are the clearest signal of device health problems |
+| `failed_policy_count` | Strong positive | Policies actively failing indicate drift already in progress |
+| `days_since_sync` | Positive | Devices not checking in are outside management reach |
+| `os_version_risk` | Positive | Outdated OS versions trigger compliance policy failures |
+| `assigned_policy_count` | Positive | More policies means more surface area for failure |
